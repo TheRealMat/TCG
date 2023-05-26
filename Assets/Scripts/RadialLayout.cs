@@ -26,7 +26,8 @@ public class RadialLayout : LayoutGroup
 
     public float fDistance;
     [Range(0f, 360f)]
-    public float MinAngle, MaxAngle, StartAngle;
+    float MinAngle, MaxAngle, StartAngle;
+    [SerializeField] float childPadding;
     protected override void OnEnable() { base.OnEnable(); CalculateRadial(); }
     public override void SetLayoutHorizontal()
     {
@@ -81,7 +82,7 @@ public class RadialLayout : LayoutGroup
                 fAngle += fOffsetAngle;
             }
         }
-
+        MaxAngle = childPadding * transform.childCount - 1;
         StartAngle = 360 - MaxAngle / 2;
 
     }
