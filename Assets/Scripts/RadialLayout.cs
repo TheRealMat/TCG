@@ -82,5 +82,7 @@ public class RadialLayout : LayoutGroup
             }
         }
 
+        StartAngle = 360 - MaxAngle / 2;
+
     }
 }
