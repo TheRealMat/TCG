@@ -82,7 +82,8 @@ public class RadialLayout : LayoutGroup
                 fAngle += fOffsetAngle;
             }
         }
-        MaxAngle = childPadding * transform.childCount - 1;
+
+        MaxAngle = childPadding * (transform.childCount - 1);
         StartAngle = 360 - MaxAngle / 2;
 
     }
