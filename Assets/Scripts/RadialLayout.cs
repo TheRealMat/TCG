@@ -25,9 +25,9 @@ public class RadialLayout : LayoutGroup
     [SerializeField] protected float startElementAngle;
 
     public float fDistance;
-    [Range(0f, 360f)]
-    float MinAngle, MaxAngle, StartAngle;
+    [Range(0f, 360f)] float MinAngle, MaxAngle, StartAngle;
     [SerializeField] float childPadding;
+    [SerializeField] float zOffset = 0.01f;
     protected override void OnEnable() { base.OnEnable(); CalculateRadial(); }
     public override void SetLayoutHorizontal()
     {
@@ -68,14 +68,13 @@ public class RadialLayout : LayoutGroup
                 DrivenTransformProperties.Anchors |
                 DrivenTransformProperties.AnchoredPosition |
                 DrivenTransformProperties.Pivot);
-                Vector3 vPos = new Vector3(Mathf.Cos(fAngle * Mathf.Deg2Rad), Mathf.Sin(fAngle * Mathf.Deg2Rad), 0.01f*i);
+                Vector3 vPos = new Vector3(Mathf.Cos(fAngle * Mathf.Deg2Rad), Mathf.Sin(fAngle * Mathf.Deg2Rad), zOffset * i);
                 child.localPosition = vPos * fDistance;
                 //Force objects to be center aligned, this can be changed however I'd suggest you keep all of the objects with the same anchor points.
                 child.anchorMin = child.anchorMax = child.pivot = new Vector2(0.5f, 0.5f);
 
 
-                float elementAngle = startElementAngle;
-                elementAngle += fAngle;
+                float elementAngle = startElementAngle + fAngle;
                 child.localEulerAngles = new Vector3(child.localEulerAngles.x, child.localEulerAngles.y, elementAngle);
 
 
